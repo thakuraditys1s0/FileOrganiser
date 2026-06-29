@@ -50,7 +50,7 @@ In addition to automatic file organization, the application also provides an **U
 ## ✅ Organization Complete
 
 <p align="center">
-  <img src="assets/organized .png" width="650">
+  <img src="assets/organized.png" width="650">
 </p>
 ---
 
