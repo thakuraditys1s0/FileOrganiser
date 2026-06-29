@@ -36,7 +36,7 @@ def organize_files(folder_path):
 
     log = []
     files_moved = 0
-
+    category_count = {}
     for item in os.listdir(folder_path):
         item_path = os.path.join(folder_path, item)
         if os.path.isfile(item_path):
@@ -49,15 +49,32 @@ def organize_files(folder_path):
             try:
                 new_path = os.path.join(target_dir, item)
                 shutil.move(item_path, new_path)
-                log.append({"from": item_path, "to": new_path})
+
+                log.append({
+                    "from": item_path,
+                    "to": new_path
+                })
+
                 files_moved += 1
+
+                # Count files moved in each category
+                category_count[category] = category_count.get(category, 0) + 1
             except Exception as e:
                 print(f"Failed to move {item}: {e}")
 
     with open(log_file, "w") as f:
         json.dump(log, f, indent=2)
 
-    messagebox.showinfo("Completed", f"Organized {files_moved} files into folders.")
+        summary = "✔ Organization Complete\n\n"
+
+    # Show category-wise count
+    for category, count in category_count.items():
+        summary += f"{category:<12} : {count}\n"
+
+    summary += "\n" + "-" * 28 + "\n"
+    summary += f"Total Files : {files_moved}"
+
+    messagebox.showinfo("Completed", summary)
 
 def undo_last_operation():
     if not os.path.exists(log_file):
