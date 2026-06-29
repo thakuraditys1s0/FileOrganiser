@@ -179,7 +179,7 @@ This project is licensed under the MIT License.
 
 # 👨‍💻 Author
 
-**Aditya Sinha**
+**Aditya Singh**
 
 GitHub:
 https://github.com/thakuraditys1s0
